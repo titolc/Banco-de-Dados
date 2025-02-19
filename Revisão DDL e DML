@@ -1,0 +1,112 @@
+-- Crie uma tabela chamada 'Universidade'
+create schema Universidade;
+use Universidade;
+
+-- Criar tabela professores:
+CREATE TABLE professores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    departamento VARCHAR(100),
+    data_contratacao DATE
+);
+
+-- Altere a tabela 'disciplinas' para adicionar coluna salario(decimal com 10 dígitos e 2 casas decimais):
+ALTER TABLE professores ADD COLUMN salario DECIMAL(10, 2);
+
+-- Remover coluna departamento:
+ALTER TABLE professores DROP COLUMN departamento;
+
+-- Crie uma nova tabela chamada 'disciplinas'
+CREATE TABLE disciplinas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100),
+    carga_horaria INT,
+    id_professor INT,
+    FOREIGN KEY (id_professor) REFERENCES professores(id)
+);
+
+-- Altere a tabela 'disciplinas' para adicionar uma coluna 'descricao' (varchar de 255 caracteres)
+ALTER TABLE disciplinas ADD COLUMN descricao VARCHAR(255);
+
+-- Exclua a tabela 'disciplinas'
+DROP TABLE disciplinas;
+
+-- Criar tabela 'departamentos'
+CREATE TABLE departamentos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100),
+    bloco VARCHAR(100),
+    data_criacao DATE
+);
+
+-- Inserção de Dados na tabela 'departamentos'
+INSERT INTO departamentos (nome, bloco, data_criacao)
+VALUES
+    ('Engenharia', 'Bloco E', '2005-03-15'),
+    ('Administração', 'Bloco F', '2010-06-20');
+
+-- Exibir tabela com os dados inseridos
+select * from departamentos;
+
+-- Adicionar um novo empregado, implica em criar outra tabela chamada 'empregados'
+CREATE TABLE empregados (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100),
+    data_admissao DATE,
+    salario DECIMAL(10, 2),
+    departamento VARCHAR(100)
+);
+
+-- Adicionar novo empregado
+INSERT INTO empregados (nome, data_admissao, salario, departamento)
+VALUES ('Lucas Fernandes', '2022-09-01', 7500.00, 'Tecnologia da Informação');
+
+-- Adicionar tabela 'bibliotecaLivro' para adicionar novo livro
+CREATE TABLE bibliotecaLivro (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    ano_publicacao INT,
+    categoria VARCHAR(100),
+    isbn VARCHAR(20),
+    editora VARCHAR(100)
+);
+
+-- Adicionar novo livro na tabela 'bibliotecaLivro'
+INSERT INTO bibliotecaLivro (nome, ano_publicacao, categoria, isbn, editora)
+VALUES ('Banco de Dados Avançado', 2021, 'Banco de Dados', '123456789', 'Novatec');
+
+-- Exibir tabela com os dados inseridos
+select * from bibliotecaLivro;
+
+-- Inserir 'Carlos Júnior' na tabela empregados
+INSERT INTO empregados (nome, data_admissao, salario, departamento)
+VALUES ('Carlos Júnior', '2023-01-01', 5000.00, 'Marketing');
+
+-- Exibir tabela com os dados inseridos
+select * from empregados;
+
+-- Atualize o salário do empregado 'Carlos Júnior' para 5500.00
+UPDATE empregados
+SET salario = 5300.00
+WHERE nome = 'Carlos Júnior';
+
+-- Criar tabela 'editora' para ter inserir dados
+CREATE TABLE editora (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100),
+    cidade VARCHAR(100)
+);
+
+-- Inserir dados da tabela 'editora'
+INSERT INTO editora (nome, cidade)
+VALUES ('Intrinseca', 'Rio de Janeiro');
+
+-- Atualize a cidade da editora 'Intrinseca' para 'Brasília'
+UPDATE editora
+SET cidade = 'Brasília'
+WHERE nome = 'Intrinseca';
+
+
+
+-- Uso desse codigo para liberar todos os comandos do WHERE:
+SET SQL_SAFE_UPDATES = 0;
