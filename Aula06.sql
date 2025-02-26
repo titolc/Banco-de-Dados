@@ -1,3 +1,5 @@
+Explicando os 2 codigos usados na aula de hoje!
+
 1.
 select cat.name AS categoria, COUNT(f.film_id) AS total_filmes -- Renomeia a categoria de filmes como 'categoria' e a contagem de filmes como  'total_filmes'
 from film f -- utiliza a tabela de filmes
