@@ -26,7 +26,7 @@ CREATE DATABASE sistema_cadastro;
 3. Configure as credenciais de acesso ao banco no arquivo `ConnectionFactory.java`:
 
 ```java
-private static final String URL = "jdbc:mysql://localhost:3306/sistema_cadastro";
+private static final String URL = "jdbc:mysql://localhost:3306/sistema_pedidos";
 private static final String USER = "seu_usuario";
 private static final String PASSWORD = "sua_senha";
 ```
